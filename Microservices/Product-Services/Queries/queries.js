@@ -6,4 +6,4 @@ const showDatabasesQuery = `SHOW DATABASES LIKE "${dbConfig.database}"`;
 module.exports ={
     createDatabaseQuery,
     showDatabasesQuery
-}
+}  
