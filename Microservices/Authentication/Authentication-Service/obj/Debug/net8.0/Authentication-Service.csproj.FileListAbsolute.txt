@@ -143,3 +143,5 @@ C:\Users\Karani Ken\Desktop\Farmers Market\Microservices\Authentication\Authenti
 C:\Users\Karani Ken\Desktop\Farmers Market\Microservices\Authentication\Authentication-Service\obj\Debug\net8.0\Authentication-Service.pdb
 C:\Users\Karani Ken\Desktop\Farmers Market\Microservices\Authentication\Authentication-Service\obj\Debug\net8.0\Authentication-Service.genruntimeconfig.cache
 C:\Users\Karani Ken\Desktop\Farmers Market\Microservices\Authentication\Authentication-Service\obj\Debug\net8.0\ref\Authentication-Service.dll
+C:\Users\Karani Ken\Desktop\Farmers Market\Microservices\Authentication\Authentication-Service\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\Karani Ken\Desktop\Farmers Market\Microservices\Authentication\Authentication-Service\bin\Debug\net8.0\Newtonsoft.Json.dll
