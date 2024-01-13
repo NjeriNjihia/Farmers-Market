@@ -8,7 +8,7 @@ namespace Authentication_Service.Services.IService
         Task<string> RegisterUser (RegisterRequestDto newUser);
        Task<LoginResponseDto> LoginUser (LoginRequestDto LoginUser);
 
-        Task<bool> AssignUserRole(string email, string Rolename);
+        Task<bool> AssignUserRole(string UserId, string Rolename);
 
         Task<List<User>> GetUsers();
     }

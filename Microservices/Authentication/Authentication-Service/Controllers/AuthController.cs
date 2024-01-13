@@ -32,6 +32,21 @@ namespace Authentication_Service.Controllers
                 _response.Message = result;
                 return BadRequest(_response);
             }
+            //send email to queue
+            return Ok(_response);
+        }
+        //login user
+        [HttpPost("Login")]
+        public async Task<ActionResult<ResponseDto>> LoginUser(LoginRequestDto loginUser)
+        {
+            var result = await _authservice.LoginUser(loginUser);
+            if(result.User == null)
+            {
+                _response.IsSuccess = false;
+                _response.Message = "Invalid Credentials";
+                return BadRequest(_response);
+            }
+            _response.obj = result;
             return Ok(_response);
         }
 
@@ -47,6 +62,25 @@ namespace Authentication_Service.Controllers
                 return BadRequest(_response);
             }
             _response.obj = users;
+            return Ok(_response);
+        }
+
+        //assigning roles
+        [HttpPost("AssigningRole")]
+        public async Task<ActionResult<ResponseDto>> AssigningRole(Guid UserId, string Role)
+        {
+            var response = await _authservice.AssignUserRole(UserId.ToString(), Role);
+            var users = await _authservice.GetUsers();
+            var user = users.FirstOrDefault(u => u.Id == UserId.ToString());
+            if (!response)
+            {
+                _response.IsSuccess = false;
+                _response.Message = "An Error Occured";
+
+                return BadRequest(_response);
+            }
+            //send email to user that they have been approved to be traders.
+            _response.obj = response;
             return Ok(_response);
         }
     }

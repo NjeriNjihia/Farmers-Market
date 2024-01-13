@@ -25,9 +25,27 @@ namespace Authentication_Service.Services
             _roleManager = roleManager;
             _jwtGenerator = jwtToken;
         }
-        public Task<bool> AssignUserRole(string email, string Rolename)
+        public async Task<bool> AssignUserRole(string UserId, string Rolename)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var user = await _context.Users.FirstOrDefaultAsync(u => u.Id.ToLower() == UserId.ToLower());
+                if(user != null)
+                {
+                    if (!_roleManager.RoleExistsAsync(Rolename).GetAwaiter().GetResult())
+                    {
+                        _roleManager.CreateAsync(new IdentityRole(Rolename)).GetAwaiter().GetResult();
+                    }
+                    await _userManager.AddToRoleAsync(user, Rolename);
+                    _context.Users.Update(user);
+                    await _context.SaveChangesAsync();
+                    return true;
+                }
+                return false;
+            }catch(Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         public async Task<List<User>> GetUsers()
