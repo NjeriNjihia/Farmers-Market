@@ -18,7 +18,7 @@ const selectUserByRole = 'SELECT * FROM users WHERE role = ? '
 const selectAllUsers = 'SELECT * FROM users'
 const showProductsTable = 'SHOW TABLES LIKE "Products"';
 const createProductsTable = `CREATE TABLE Products (
-    product_id INT PRIMARY KEY,
+    product_id INT  AUTO_INCREMENT PRIMARY KEY NOT NULL,
     product_name VARCHAR(255),
     product_description TEXT,
     product_rating FLOAT,
@@ -29,6 +29,15 @@ const createProductsTable = `CREATE TABLE Products (
 const insertProducts = `INSERT INTO Product (product_id, product_name, product_description, product_rating, product_image, product_price)
 VALUES (?, ?, ?, ?, ?, ?);
 `
+const updateProduct = `  UPDATE Product
+  SET product_name = ?,
+      product_description = ?,
+      product_rating = ?,
+      product_image = ?,
+      product_price = ?
+  WHERE product_id = ?;
+`;
+const getProducts = `SELECT * FROM Product ORDER BY product_id ASC`
  const deleteProduct = `DELETE FROM Products WHERE product_id = ?`
 module.exports = {
     createDatabase,        
@@ -43,6 +52,7 @@ module.exports = {
     insertProducts,
     showProductsTable,
     deleteProduct,    
-    selectAllUsers,    
-   
+    selectAllUsers, 
+    updateProduct ,  
+   getProducts
 }

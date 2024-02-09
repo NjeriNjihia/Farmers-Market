@@ -97,7 +97,53 @@ const selectUsers = async () =>{
         throw error;
     }
 }
+//insert a new product to the database
+const insertProduct = async (productData) =>{
+    const [product_name, product_description, 
+        product_price, product_rating, product_image] = productData;
+        try {
+            await executeQuery(queries.insertProduct, [product_name,product_description,
+             product_price, product_rating, product_image])
+             console.log("product added successfully");
+            
+        } catch (error) {
+            throw error;
+        }
+}
 
+// update a product
+const updateProduct = async (product_id ,newProductData)=>{
+    const [product_name, product_description, 
+        product_price, product_rating, product_image] = newProductData;
+
+        try {
+            await executeQuery(queries.updateProduct,[product_name,product_description,
+             product_price, product_rating, product_image, product_id])
+             console.log("product updated successfully");
+            
+        } catch (error) {
+            throw error;
+        }
+}
+//delete a product
+const deleteProduct = async (product_id)=>{
+    try {
+        await executeQuery(queries.deleteProduct, [product_id])        
+        console.log(`The product with id ${product_id} has been deleted`);
+    } catch (error) {
+        throw error;
+    }
+}
+    
+//get products
+const  getProducts = async ()=>{
+    try {
+        const result = await executeQuery(queries.getProducts);
+        return result;
+    } catch (error) {
+        throw error
+    }
+}
 //initialize database
 const initializeDatabase = async ()=>{
     try {
@@ -115,5 +161,9 @@ module.exports = {
     insertUser,
     selectUserByEmail,
     selectUsers,
-    selectUserByRole
+    selectUserByRole,
+    insertProduct,
+    updateProduct,
+    deleteProduct,
+    getProducts
 }
