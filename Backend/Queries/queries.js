@@ -1,4 +1,4 @@
-const dbConfig = require('../Config/db.config')
+const dbConfig = require('../Config/db.Config')
 const createDatabase = `CREATE DATABASE IF NOT EXISTS ${dbConfig.database}`
 const showDatabases = `SHOW DATABASES LIKE "${dbConfig.database}"`
 const showUsersTableQuery = 'SHOW TABLES LIKE "users"';
@@ -16,19 +16,20 @@ const insertUsersQuery = 'INSERT INTO users (name, email,password,phone,role) VA
 const selectUserByEmail = 'SELECT * FROM users WHERE email = ?'
 const selectUserByRole = 'SELECT * FROM users WHERE role = ? '
 const selectAllUsers = 'SELECT * FROM users'
-const showCustomerDetailsTable = 'SHOW TABLES LIKE "customerdetails"';
-const createProductsTable = `CREATE TABLE customerdetails (
-    ID INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
-    name VARCHAR(255) NOT NULL,
-    id_photo VARCHAR(255) NOT NULL,
-    email VARCHAR(255) UNIQUE NOT NULL,
-    phone INT,
-    payment_code VARCHAR(255) NOT NULL  
-    )`   
+const showProductsTable = 'SHOW TABLES LIKE "Products"';
+const createProductsTable = `CREATE TABLE Products (
+    product_id INT PRIMARY KEY,
+    product_name VARCHAR(255),
+    product_description TEXT,
+    product_rating FLOAT,
+    product_image VARCHAR(255),
+    product_price DECIMAL(10, 2)
+);`   
 
-const insertCustomerDetails =  `INSERT INTO customerDetails (name,id_photo, email, phone, payment_code)
- VALUES (?, ?, ?, ?, ?)`;
- const deleteCustomerDetails = `DELETE FROM customerDetails WHERE email = ?`
+const insertProducts = `INSERT INTO Product (product_id, product_name, product_description, product_rating, product_image, product_price)
+VALUES (?, ?, ?, ?, ?, ?);
+`
+ const deleteProduct = `DELETE FROM Products WHERE product_id = ?`
 module.exports = {
     createDatabase,        
     showDatabases,
@@ -39,8 +40,8 @@ module.exports = {
     selectUserByEmail,
     selectUserByRole,
     createProductsTable,
-    insertCustomerDetails,
-    showCustomerDetailsTable,
+    insertProducts,
+    showProductsTable,
     deleteCustomerDetails,    
     selectAllUsers,    
    
