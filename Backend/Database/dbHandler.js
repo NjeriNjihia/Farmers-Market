@@ -144,6 +144,24 @@ const  getProducts = async ()=>{
         throw error
     }
 }
+//get product by id 
+const getProductByID = async (product_id) =>{
+    try {
+        const result = await executeQuery(queries.getProductByID, [product_id])
+        return result;
+    } catch (error) {
+        throw error;
+    }
+}
+//get the product count
+const getProductCount = async () =>{
+    try {
+        const result = await executeQuery(queries.getProductCount);
+        return result;
+    } catch (error) {
+        throw error
+    }
+}
 //initialize database
 const initializeDatabase = async ()=>{
     try {
@@ -165,5 +183,7 @@ module.exports = {
     insertProduct,
     updateProduct,
     deleteProduct,
-    getProducts
+    getProducts,
+    getProductByID,
+    getProductCount
 }

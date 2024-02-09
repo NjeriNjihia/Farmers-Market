@@ -39,6 +39,8 @@ const updateProduct = `  UPDATE Product
 `;
 const getProducts = `SELECT * FROM Product ORDER BY product_id ASC`
  const deleteProduct = `DELETE FROM Products WHERE product_id = ?`
+ const getProductByID = `SELECT * FROM products WHERE product_id = ?`
+ const getProductCount = `SELECT COUNT() FROM products`
 module.exports = {
     createDatabase,        
     showDatabases,
@@ -54,5 +56,6 @@ module.exports = {
     deleteProduct,    
     selectAllUsers, 
     updateProduct ,  
-   getProducts
+   getProducts,
+   getProductByID
 }

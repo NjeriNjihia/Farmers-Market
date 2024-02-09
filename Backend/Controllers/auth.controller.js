@@ -52,6 +52,7 @@ const login = async (req, res,next) => {
         res.status(200).json({ token });
     } catch (error) {
        throw error;
+       next();
     }
 }
 const selectUsers = async (req, res) => {
