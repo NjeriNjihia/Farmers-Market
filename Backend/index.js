@@ -2,7 +2,7 @@ require('dotenv').config();
 const express = require('express')
 const dbHandler = require('./Database/dbHandler')
 const bodyParser = require('body-parser');
-
+const authRoutes = require('./Routes/auth.routes')
 const app = express();
 const port = process.env.PORT;
 app.use(bodyParser.json())
@@ -19,6 +19,7 @@ dbHandler.pool.getConnection((err, connection)=>{
         throw err;    
     })
 })
+app.use('/api/auth', authRoutes)
 
 app.listen(port,()=>{
     console.log(`App started on http://localhost:${port}`);

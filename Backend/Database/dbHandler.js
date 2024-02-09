@@ -56,6 +56,48 @@ const createTableIfNotExists = async ()=>{
     }
 }
 
+//insert a user 
+const insertUser = async (userData) =>{
+    const {name, email, password, phone,role} = userData;
+    try {
+        await executeQuery(queries.insertUsersQuery, [name, email,password,phone,role]);
+        console.log('user added successfully')
+    } catch (error) {
+        throw error;
+    }
+}
+//select a user by email
+const selectUserByEmail = async (email) =>{
+    try {
+       const result = await executeQuery(queries.selectUserByEmail, [email]);           
+        return result;
+    } catch (error) {
+        throw error;  
+    }
+}
+//select a user by role
+const selectUserByRole = async (role) =>{
+    try {
+       const result = await executeQuery(queries.selectUserByRole, [role]);           
+        return result;
+    } catch (error) {
+        throw error;
+    }
+}
+//select all users
+const selectUsers = async () =>{
+    try {
+        const result = await executeQuery(queries.selectAllUsers);
+        if(result.length > 0){
+            return result;
+        }else{
+            console.log('no users in the table')
+        }
+    } catch (error) {
+        throw error;
+    }
+}
+
 //initialize database
 const initializeDatabase = async ()=>{
     try {
@@ -69,5 +111,9 @@ const initializeDatabase = async ()=>{
 
 module.exports = {
     initializeDatabase,
-    pool
+    pool,
+    insertUser,
+    selectUserByEmail,
+    selectUsers,
+    selectUserByRole
 }
