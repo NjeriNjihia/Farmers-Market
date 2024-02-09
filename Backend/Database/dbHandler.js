@@ -1,6 +1,6 @@
 const mysql = require('mysql')
 const dbConfig = require('../Config/db.Config')
-const queries = require('../Queries/query')
+const queries = require('../Queries/queries')
 const pool = mysql.createPool(dbConfig); /* connection pool is technique 
 used to efficiently manage and reuse database connections improving performance */
 
@@ -45,7 +45,7 @@ const createTableIfNotExists = async ()=>{
             await executeQuery(queries.createUserTableQuery);
             console.log(' user table was created successfully')
         }else if(!customerTableExists){
-            await executeQuery(queries.createCustomerDetailsTable);
+            await executeQuery(queries.createProductsTable);
             console.log(' customer table was created successfully')
         }
         else{
@@ -68,5 +68,6 @@ const initializeDatabase = async ()=>{
 }
 
 module.exports = {
-    initializeDatabase
+    initializeDatabase,
+    pool
 }

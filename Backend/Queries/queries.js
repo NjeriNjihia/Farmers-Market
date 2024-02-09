@@ -42,7 +42,7 @@ module.exports = {
     createProductsTable,
     insertProducts,
     showProductsTable,
-    deleteCustomerDetails,    
+    deleteProduct,    
     selectAllUsers,    
    
 }
