@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt')
 const dbHandler = require('../Database/dbHandler')
 const jwt = require("jsonwebtoken")
+const sendEmail = require('../Middlewares/email.middleware')
 const register = async (req, res,next) => {
     try {
         const { name, email, password, phone,role } = req.body;
@@ -22,7 +23,8 @@ const register = async (req, res,next) => {
         }
         await dbHandler.insertUser(userData);
         res.status(201).json({ message: "User was added successfully" });
-
+        //send email to user 
+        sendEmail(email, "Welcome to FarmFiesta", "Thank you for registering with us");
     } catch (error) {
         throw error;
         next();
@@ -50,6 +52,7 @@ const login = async (req, res,next) => {
             expiresIn: "24h",
         })
         res.status(200).json({ token });
+        sendEmail(email, "Login update", "There was new login to your account")
     } catch (error) {
        throw error;
        next();
