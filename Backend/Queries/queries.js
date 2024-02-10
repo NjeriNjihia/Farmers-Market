@@ -23,7 +23,7 @@ const createProductsTable = `CREATE TABLE Products (
     product_description TEXT,
     product_rating FLOAT,
     product_image VARCHAR(255),
-    product_price DECIMAL(10, 2)
+    product_price DECIMAL(10, 2)   
 );`   
 
 const insertProducts = `INSERT INTO Product (product_id, product_name, product_description, product_rating, product_image, product_price)
@@ -32,7 +32,7 @@ VALUES (?, ?, ?, ?, ?, ?);
 const updateProduct = `  UPDATE Product
   SET product_name = ?,
       product_description = ?,
-      product_rating = ?,
+      product_rating = ?,  
       product_image = ?,
       product_price = ?
   WHERE product_id = ?;

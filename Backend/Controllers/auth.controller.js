@@ -20,7 +20,7 @@ const register = async (req, res,next) => {
             password: hashedPassword,
             phone,
             role,
-        }
+        }      
         await dbHandler.insertUser(userData);
         res.status(201).json({ message: "User was added successfully" });
         //send email to user 
@@ -29,7 +29,7 @@ const register = async (req, res,next) => {
         throw error;
         next();
     }
-}
+}   
 
 const login = async (req, res,next) => {
     try {

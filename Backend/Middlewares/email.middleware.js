@@ -1,3 +1,4 @@
+require('dotenv').config();
 const nodemailer = require("nodemailer")
 
 const sendEmail = async (to,subject,text) =>{
@@ -7,16 +8,19 @@ const sendEmail = async (to,subject,text) =>{
             service: 'gmail',
             auth: {
                 user: process.env.EMAIL_USER,
-                password: process.env.EMAIL_PASS
+                pass: process.env.EMAIL_PASS
             }
         });
 
         //Setup email data
+
         const mailOptions = {
             from: process.env.EMAIL_USER,
             to: to,
             subject: subject,
-            text: text
+            html: ` <img src="https://s3.amazonaws.com/logos.brandpa.com/uploads/d67b26f50dac5330a56fe707b4aa589a/FarmFiesta.png" alt='logo'/>
+            <p>${text}</p>
+            `
         };
         //Send email
         const info = await transporter.sendMail(mailOptions);
@@ -25,5 +29,5 @@ const sendEmail = async (to,subject,text) =>{
         console.error('Error sending email:', error);
     }
 };
-
+  
 module.exports = sendEmail

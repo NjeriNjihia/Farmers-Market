@@ -7,4 +7,4 @@ router.post('/register', register);
 router.post('/login', login)
 router.get('/get-users', selectUsers)
 
-module.exports = router
+module.exports = router    
