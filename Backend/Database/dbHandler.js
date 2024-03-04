@@ -1,4 +1,4 @@
-const mysql = require('mysql')
+const mysql = require('mysql2')
 const dbConfig = require('../Config/db.Config')
 const queries = require('../Queries/queries')
 const pool = mysql.createPool(dbConfig); /* connection pool is technique 
@@ -13,7 +13,7 @@ const executeQuery = (query, values=[])=>{
                 resolve(result)
             }
         })
-    })
+    })  
 }
 
 // create a databse if  it doesn't exist already

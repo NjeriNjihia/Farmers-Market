@@ -15,7 +15,7 @@ const register = async (req, res,next) => {
         //hash the password before saving it
         const hashedPassword = await bcrypt.hash(password, 10);
         const userData = {
-            name,
+            name,   
             email,
             password: hashedPassword,
             phone,
